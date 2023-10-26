@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <title>Blog</title>
+</head>
+<body>
+<nav th:replace="~{navbar :: navbar}"></nav>
+<th:block layout:fragment="content"></th:block>
+<script th:src="@{/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/custom.js}"></script>
+</body>
+</html>

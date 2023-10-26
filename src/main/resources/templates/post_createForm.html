@@ -1,0 +1,18 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+    <div>
+        <form th:action="@{/post/create}" method="post" th:object="${postForm}">
+            <div th:replace="~{form_errors :: error}"></div>
+            <input class="form-control border-0 mb-3" style="font-size:3rem;" placeholder="제목을 입력해주세요" type="text"
+                   name="subject">
+            <textarea class="form-control border-0" style="font-size:1.2rem;" placeholder="내용을 입력해주세요" name="content" id="content"
+                      onkeydown="autoResize(this);"
+                      onkeyup="autoResize(this);" rows="20"></textarea>
+            <div class="d-flex justify-content-between align-items-start my-2">
+                <a th:href="@{/post/list}" class="btn btn-outline-secondary">뒤로가기</a>
+                <button type="submit" class="btn btn-outline-primary btn-lg">등록</button>
+            </div>
+        </form>
+    </div>
+</div>
+</html>
