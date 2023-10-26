@@ -4,8 +4,8 @@
         <form th:action="@{/post/create}" method="post" th:object="${postForm}">
             <div th:replace="~{form_errors :: error}"></div>
             <input class="form-control border-0 mb-3" style="font-size:3rem;" placeholder="제목을 입력해주세요" type="text"
-                   name="subject">
-            <textarea class="form-control border-0" style="font-size:1.2rem;" placeholder="내용을 입력해주세요" name="content" id="content"
+                   th:field="*{subject}">
+            <textarea class="form-control border-0" style="font-size:1.2rem;" placeholder="내용을 입력해주세요" th:field="*{content}"
                       onkeydown="autoResize(this);"
                       onkeyup="autoResize(this);" rows="20"></textarea>
             <div class="d-flex justify-content-between align-items-start my-2">

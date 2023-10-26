@@ -23,7 +23,7 @@ a {
 }
 
 .createPostBtn {
-    padding:5px 10px;
+    padding:10px 15px;
     font-weight:bold;
     background:#0090B7;
     color:white;
@@ -65,4 +65,58 @@ a {
     font-weight:bold;
     font-size:0.8rem;
     background:#E8D9FF;
+}
+
+.container {
+    background:white;
+}
+
+.logo {
+    width:100px;
+    height:70px;
+    border-radius:30px;
+}
+
+.userForm {
+    width:500px;
+    margin:10px auto;
+}
+
+.userForm > h2 {
+    border-bottom:1px solid;
+    padding:10px 0;
+}
+
+.userForm > form {
+    margin-top:30px;
+}
+
+.userForm input {
+    margin-top:10px;
+}
+
+.btn-signup {
+    border:0;
+    background:#91CADF;
+    padding:10px 30px;
+    margin-top:10px;
+    border-radius:30px;
+    color:white;
+    transition:0.3s;
+}
+
+.btn-signup:hover {
+    background:#2EB1E1;
+    color:black;
+}
+
+.btn-login > a {
+    border:0;
+}
+
+.navbar-toggler {
+    border-radius:50px;
+    font-weight:bolder;
+    box-shadow:3px 3px;
+    padding:20px;
 }
