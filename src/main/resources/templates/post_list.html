@@ -1,16 +1,52 @@
 <html layout:decorate="~{layout}">
 <div layout:fragment="content" class="container">
-    <div class="row">
-    <a class="card mx-3 my-3" th:each="post : ${postList}" th:href="@{|/post/detail/${post.id}|}">
-        <div class="card-body">
-            <h5 class="card-title" th:text="${post.subject}"></h5>
-            <p class="card-text" th:text="${post.content}"></p>
+    <div class="d-flex justify-content-between">
+        <div>
+            <form action="#" class="input-group my-3">
+                <input type="text" placeholder="검색키워드" class="form-control">
+                <button type="submit" class="btn btn-primary">검색</button>
+            </form>
+            <a class="createPostBtn nav-link" aria-current="page" th:href="@{/post/create}">블로그 작성</a>
         </div>
-        <div class="card-footer text-body-secondary d-flex justify-content-between">
-            <span th:text="${#temporals.format(post.createDate, 'yyyy-MM-dd HH:mm')}"></span>
-            <span th:text="author"></span>
+        <div class="row ms-5">
+            <a class="card mx-3 my-3" th:each="post : ${paging}" th:href="@{|/post/detail/${post.id}|}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${post.subject}"></h5>
+                    <p class="card-text" th:text="${post.content}"></p>
+                </div>
+                <div class="card-footer text-body-secondary d-flex justify-content-between">
+                    <span th:text="${#temporals.format(post.createDate, 'yyyy-MM-dd HH:mm')}"></span>
+                    <span th:text="${post.author.nickname}"></span>
+                </div>
+            </a>
+            <!--페이지네이션 시작-->
+            <ul class="pagination justify-content-center my-5">
+                <li class="page-item" th:classappend="${!paging.hasPrevious()} ? 'disabled'">
+                    <a class="page-link" href="javascript:void(0)" th:data-page="${paging.number-1}">Previous</a>
+                </li>
+                <li class="page-item" th:each="page : ${#numbers.sequence(0, paging.totalPages-1)}"
+                    th:classappend="${paging.number == page} ? 'active'"
+                    th:if="${page >= paging.number-2 && page <= paging.number+2}">
+                    <a class="page-link" href="javascript:void(0)" th:data-page="${page}" th:text="${page}"></a>
+                </li>
+                <li class="page-item" th:classappend="${!paging.hasNext()} ? 'disabled'">
+                    <a class="page-link" href="javascript:void(0)" th:data-page="${paging.number+1}">Next</a>
+                </li>
+            </ul>
+            <form id="pageForm" th:action="@{/post/list}" method="get">
+                <input type="hidden" id="page" name="page" th:value="${paging.number}">
+            </form>
         </div>
-    </a>
     </div>
 </div>
+<script layout:fragment="script">
+    const pageElements = document.querySelectorAll(".page-link");
+    Array.from(pageElements).forEach(function(element) {
+        element.addEventListener('click', function() {
+            document.querySelector("#page").value = this.dataset.page;
+            document.querySelector("#pageForm").submit();
+        });
+    });
+</script>
 </html>
+

@@ -2,6 +2,7 @@ package com.voda.blog.user;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,9 +27,13 @@ public class UserController {
             bindingResult.rejectValue("password2", "passwordIncorrect",
                     "비밀번호와 확인이 일치하지 않습니다");
             return "user_signup";
+        } try {
+            userService.create(userCreateForm.getUsername(), userCreateForm.getPassword1(), userCreateForm.getEmail(),
+                    userCreateForm.getNickname());
+        } catch (DataIntegrityViolationException e) {
+            bindingResult.reject("userIncorrect", "아이디 또는 닉네임이 중복입니다");
+            return "user_signup";
         }
-        userService.create(userCreateForm.getUsername(), userCreateForm.getPassword1(), userCreateForm.getEmail(),
-                userCreateForm.getNickname());
         return "redirect:/";
     }
 

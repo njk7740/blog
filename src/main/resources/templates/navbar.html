@@ -1,13 +1,14 @@
 <nav th:fragment="navbar" class="navbar bg-body-tertiary mb-2">
-    <div class="container-fluid d-flex justify-content-between">
+    <div class="container d-flex justify-content-between">
         <div class="d-flex align-items-center">
             <a class="navbar-brand mx-3" href="/">
                 <img class="logo" th:src="@{/Doran.png}">
             </a>
-            <a class="nav-link ms-3" aria-current="page" href="/">홈</a>
+        </div>
+        <div>
+            <!--상단 바 중앙-->
         </div>
         <div class="d-flex align-items-center">
-            <a class="createPostBtn nav-link me-5" aria-current="page" th:href="@{/post/create}">블로그 작성</a>
             <div class="btn-login btn-group m-3" role="group" aria-label="Basic example" sec:authorize="isAnonymous()">
                 <a type="button" class="btn btn-primary" th:href="@{/user/login}">로그인</a>
                 <a type="button" class="btn btn-outline-primary" th:href="@{/user/signup}">회원가입</a>
@@ -26,7 +27,7 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" th:href="@{/user/logout}">로그아웃</a>
+                        <a class="nav-link" aria-current="page" th:href="@{/user/logout}">로그아웃</a>
                     </li>
                 </ul>
             </div>
